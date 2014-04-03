@@ -7,7 +7,7 @@ Get running
 ------------------
 You'll need Firefox and a Ruby interpreter (ruby, jruby, etc)
 
-1. `git clone`
+1. `git clone https://github.com/rmseng/2048-agent.git`
 2. `bundle install`
 3. `ruby twenty_forty_eight.rb --help`
 4. `ruby twenty_forty_eight.rb -a GreedyAgent -t 2`
@@ -20,7 +20,8 @@ Get developing
   * `next_move` that takes the gameboard as its parameter and returns your agent's move
 
   Check `greedy_agent.rb` or `sample_agent.rb` in the agents directory for examples.
-3. Have fun!
+3. `ruby twenty_forty_eight.rb -a <YourAgent>`
+4. Have fun!
 
 Tips
 ------------------
