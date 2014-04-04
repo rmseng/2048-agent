@@ -19,11 +19,13 @@ if __FILE__ == $0
     opt :trials, "Number of trials to run", type: :integer, default: 1
     opt :debug, "'Debugging' mode, enter plays next move"
     opt :local, "Simulate game locally instead of opening Firefox"
+    opt :parallelism, "Number of trials to run concurrently", type: :integer, default: 1
   end
 
   Trollop::die :agent, "must set the agent to run" if opts[:agent].nil?
   Trollop::die :trials, "must be at least 1" if opts[:trials] < 1
+  Trollop::die :parallelism, "must be 1 if --debug is set" if opts[:debug] and opts[:parallelism] > 1
 
-  tfe = TwentyFortyEight::Runner.new opts[:local]
-  tfe.run_trials Object.const_get(opts[:agent]).new, opts[:trials], opts[:debug]
+  tfe = TwentyFortyEight::Runner.new opts[:local], opts[:debug]
+  tfe.run_trials Object.const_get(opts[:agent]), opts[:trials], opts[:parallelism]
 end
