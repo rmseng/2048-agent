@@ -19,7 +19,7 @@ class TwentyFortyEight::WebGameDriver
   end
 
   def send_move direction
-    raise 'InvalidDirectionException' unless [:left, :right, :up, :down].include? direction
+    raise 'InvalidMoveException' unless @gameboard.valid_moves.include? direction
     @gameboard_elt.send_keys direction
     sleep @delay
     @move_count += 1

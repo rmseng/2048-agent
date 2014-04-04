@@ -3,10 +3,10 @@ class SampleAgent
     @counter = 0
   end
 
-  # just cycles through the four available moves
+  # cycles through all available moves
   def next_move gameboard
     @counter += 1
-    @counter = 0 if @counter == 4
+    @counter = 0 if @counter == gameboard.valid_moves.count
     gameboard.valid_moves[@counter]
   end
 end

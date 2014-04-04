@@ -1,7 +1,7 @@
 2048-agent
 ==========
 
-Create and run agents to play Gariele Cirulli's [2048](http://gabrielecirulli.github.io/2048/)!
+Create and run agents to play Gabriele Cirulli's [2048](http://gabrielecirulli.github.io/2048/)!
 
 Get running
 ------------------
