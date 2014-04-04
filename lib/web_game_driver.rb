@@ -3,7 +3,7 @@ require 'selenium-webdriver'
 class TwentyFortyEight::WebGameDriver
   attr_reader :gameboard, :move_count
 
-  def initialize game_size = 4, delay = 0.5
+  def initialize game_size = 4, delay = 0.25
     @game_size, @delay = game_size, delay
     @driver = Selenium::WebDriver.for :firefox
     reset
