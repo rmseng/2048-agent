@@ -12,7 +12,7 @@ class TwentyFortyEight::LocalDriver
   end
 
   def send_move direction
-    raise 'InvalidDirectionException' unless [:left, :right, :up, :down].include? direction
+    raise "InvalidDirectionError: #{direction}" unless [:left, :right, :up, :down].include? direction
     @move_count += 1
     @gameboard = @gameboard.move direction, true
   end

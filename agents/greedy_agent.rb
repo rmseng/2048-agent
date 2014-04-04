@@ -4,15 +4,13 @@ class GreedyAgent
 
   # takes the moves that has the highest score
   def next_move gameboard
-    scores = {}
-    gameboard.valid_moves.each{ |move| scores[move] = gameboard.move(move).score }
-    max_score = scores.values.max
+    result_pairs = []
 
-    # if the score wouldn't change, pick a random action
-    if max_score == gameboard.score
-      gameboard.valid_moves.select{ |move| not gameboard.equal_tile_layout? gameboard.move move }.sample
-    else
-      scores.invert[max_score]
+    gameboard.valid_moves.each do |move|
+      new_gameboard = gameboard.move move
+      result_pairs << { score: new_gameboard.score, move: move } unless gameboard.equal_tile_layout? new_gameboard
     end
+
+    result_pairs.sort_by{ |s| s[:score] }.reverse.first[:move]
   end
 end
