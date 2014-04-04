@@ -257,13 +257,16 @@ class TwentyFortyEight::Gameboard
 
   def left_shift
     (0..@size-1).each do |row|
+      # tiles can't combine more than once in one move
+      combined_cols = []
+
       # find first non-nil element to shift
       (1..@size-1).each do |col|
         next if get_value(row,col).nil?
 
         # shift element to next non-empty square
         new_col = col
-        new_col -= 1 while new_col > 0 and get_value(row, new_col-1).nil?
+        new_col -= 1 while new_col > 0 and get_value(row, new_col - 1).nil?
         
         # possibly set element to new column
         if new_col != col
@@ -271,11 +274,12 @@ class TwentyFortyEight::Gameboard
           set_value row, col, nil
         end
 
-        # if it's equal to its neighbor to the left, square it
-        if (new_col - 1 >= 0) and get_value(row, new_col - 1) == get_value(row, new_col)
+        # if it's equal to its neighbor to the left, double it
+        if (new_col - 1 >= 0) and get_value(row, new_col - 1) == get_value(row, new_col) and not combined_cols.include?(new_col - 1)
           set_value row, new_col - 1, get_value(row, new_col-1)*2
           set_value row, new_col, nil
           @score += get_value row, new_col - 1
+          combined_cols << (new_col - 1)
         end
       end
     end

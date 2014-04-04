@@ -17,7 +17,7 @@ class TwentyFortyEight::Runner
         end
 
         move = agent.next_move driver.gameboard
-        puts move if debug
+        puts "moving #{move}..." if debug
         driver.send_move move
         
         if driver.gameboard.won?
