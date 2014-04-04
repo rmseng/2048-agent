@@ -5,6 +5,10 @@ class TwentyFortyEight::Gameboard
     def initialize row, column, value
       @row, @column, @value = row, column, value
     end
+
+    def == other_tile
+      @row == other_tile.row and @column == other_tile.column and @value == other_tile.value
+    end
   end
 
   ValidMoves = [:left, :right, :up, :down].freeze
