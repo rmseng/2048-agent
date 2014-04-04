@@ -137,38 +137,46 @@ class TwentyFortyEight::Gameboard
   end
 
   def each_horizontal_pair
-    (0..@size-1).each do |r|
-      (0..@size-2).each do |c|
-        yield [Tile.new(r,c,get_value(r,c)), Tile.new(r,c+1,get_value(r,c+1))]
+    Enumerator.new do |y|
+      (0..@size-1).each do |r|
+        (0..@size-2).each do |c|
+          y << [Tile.new(r,c,get_value(r,c)), Tile.new(r,c+1,get_value(r,c+1))]
+        end
       end
     end
   end
 
   def each_vertical_pair
-    (0..@size-1).each do |c|
-      (0..@size-2).each do |r|
-        yield [Tile.new(r,c,get_value(r,c)), Tile.new(r+1,c,get_value(r+1,c))]
+    Enumerator.new do |y|
+      (0..@size-1).each do |c|
+        (0..@size-2).each do |r|
+          y << [Tile.new(r,c,get_value(r,c)), Tile.new(r+1,c,get_value(r+1,c))]
+        end
       end
     end
   end
 
   def each_tile
-    (0..@size-1).each do |r|
-      (0..@size-1).each do |c|
-        yield Tile.new(r, c, get_value(r,c))
+    Enumerator.new do |y|
+      (0..@size-1).each do |r|
+        (0..@size-1).each do |c|
+          y << Tile.new(r, c, get_value(r,c))
+        end
       end
     end
   end
 
   def each_adjacent_tile r, c
-    (-1..1).each do |r_d|
-      (-1..1).each do |c_d|
-        next if r_d == c_d
-        r_n = r + r_d
-        c_n = c + c_d
-        next if r_n < 0 or c_n < 0
-        next if r_n > (@size-1) or c_n > (@size-1)
-        yield Tile.new r_n, c_n, get_value(r_n, c_n)
+    Enumerator.new do |y|
+      (-1..1).each do |r_d|
+        (-1..1).each do |c_d|
+          next if r_d == c_d
+          r_n = r + r_d
+          c_n = c + c_d
+          next if r_n < 0 or c_n < 0
+          next if r_n > (@size-1) or c_n > (@size-1)
+          y << Tile.new(r_n, c_n, get_value(r_n, c_n))
+        end
       end
     end
   end
