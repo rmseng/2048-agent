@@ -39,10 +39,10 @@ TwentyFortyEight::Gameboard comes with many useful methods.  Some of these metho
   * `board_full?` returns true even if there is a possible combination to be made
   * `won?` self-explanatory
   * `lost?` self-explanatory
-  * `each_tile` yields each Tile
-  * `each_horizontal_pair` yields horizontal pairs of Tiles
-  * `each_vertical_pair` yields vertical pairs of Tiles
-  * `each_adjacent_tile(row, col)` yields the 2, 3, or 4 immediately adjacent Tiles
+  * `tiles` enumerates each Tile
+  * `horizontal_pairs` enumerates horizontal pairs of Tiles
+  * `vertical_pairs` enumerates vertical pairs of Tiles
+  * `adjacent_tiles(row, col)` enumerates the 2, 3, or 4 immediately adjacent Tiles
   * `largest_tile_value` returns the value of the highest-valued tile
   * `to_s` prints a ASCII representation of the gameboard
   * `free_cells` returns an array of Tiles with nil (empty) values

@@ -136,7 +136,7 @@ class TwentyFortyEight::Gameboard
     true
   end
 
-  def each_horizontal_pair
+  def horizontal_pairs
     Enumerator.new do |y|
       (0..@size-1).each do |r|
         (0..@size-2).each do |c|
@@ -146,7 +146,7 @@ class TwentyFortyEight::Gameboard
     end
   end
 
-  def each_vertical_pair
+  def vertical_pairs
     Enumerator.new do |y|
       (0..@size-1).each do |c|
         (0..@size-2).each do |r|
@@ -156,7 +156,7 @@ class TwentyFortyEight::Gameboard
     end
   end
 
-  def each_tile
+  def tiles
     Enumerator.new do |y|
       (0..@size-1).each do |r|
         (0..@size-1).each do |c|
@@ -166,7 +166,7 @@ class TwentyFortyEight::Gameboard
     end
   end
 
-  def each_adjacent_tile r, c
+  def adjacent_tiles r, c
     Enumerator.new do |y|
       (-1..1).each do |r_d|
         (-1..1).each do |c_d|
@@ -183,7 +183,7 @@ class TwentyFortyEight::Gameboard
 
   def largest_tile_value
     values = []
-    each_tile do |tile|
+    tiles.each do |tile|
       values << tile.value
     end
     values.compact.max
