@@ -1,10 +1,10 @@
 module TwentyFortyEight end
 
-require 'lib/gameboard'
-require 'lib/local_driver'
-require 'lib/web_game_driver'
-require 'lib/runner'
-Dir.foreach('agents'){ |fname| require "agents/#{fname}" if fname =~ /.+\.rb/ }
+require './lib/gameboard'
+require './lib/local_driver'
+require './lib/web_game_driver'
+require './lib/runner'
+Dir.foreach('agents'){ |fname| require "./agents/#{fname}" if fname =~ /.+\.rb/ }
 
 if __FILE__ == $0
   require 'trollop'
